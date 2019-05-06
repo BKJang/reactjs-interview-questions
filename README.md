@@ -5,6 +5,9 @@
 <a href="https://github.com/SeonHyungJo" target="_blank" rel="nofollow">
 	<img src="https://avatars2.githubusercontent.com/u/24274424?s=60&v=4">
 </a>
+<a href="https://github.com/BKJang" target="_blank" rel="nofollow">
+	<img src="https://avatars2.githubusercontent.com/u/24209005?s=60&v=4">
+</a>
 
 > * :clipboard: 본 문서는 [sudheerj](https://github.com/sudheerj)의 [reactjs-interview-questions](https://github.com/sudheerj/reactjs-interview-questions)의 번역본입니다.
 > * :star: 이 프로젝트가 마음에 드셨다면 **STAR**를 눌러주세요.
@@ -21,18 +24,18 @@
 |3  | [JSX란 무엇인가?](#JSX란-무엇인가) |
 |4  | [Element와 Component의 차이점은?](#element와-component의-차이점은) |
 |5  | [React에서 components는 어떻게 만드나?](#React에서-components는-어떻게-만드나) |
-|6  | [언제 Function Component 대신에 Class Component를 사용하나?](#when-to-use-a-class-component-over-a-function-component) |
-|7  | [Pure Components란 무엇인가?](#what-are-pure-components) |
-|8  | [React에서 state는 무엇인가?](#what-is-state-in-react) |
-|9  | [React에서 props는 무엇인가?](#what-are-props-in-react) |
-|10 | [state와 prop의 차이점은?](#what-is-the-difference-between-state-and-props) |
+|6  | [언제 Function Component 대신에 Class Component를 사용하나?](#언제-Function-Component-대신에-Class-Component를-사용하나) |
+|7  | [Pure Components란 무엇인가?](#Pure-Components란-무엇인가) |
+|8  | [React에서 state는 무엇인가?](#React에서-state는-무엇인가) |
+|9  | [React에서 props는 무엇인가?](#React에서-props는-무엇인가) |
+|10 | [state와 prop의 차이점은?](#state와-prop의-차이점은) |
 |11 | [왜 state를 직접 update하면 안되나?](#왜-state를-직접-update하면-안되나) |
 |12 | [setState()의 argument로 callback 함수를 사용하는 이유는?](#setState()의-argument로-callback-함수를-사용하는-이유는) |
 |13 | [HTML과 React의 event handling의 차이점은?](#HTML과-React의-event-handling의-차이점은) |
-|14 | [How to bind methods or event handlers in JSX callbacks?](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks) |
-|15 | [How to pass a parameter to an event handler or callback?](#how-to-pass-a-parameter-to-an-event-handler-or-callback) |
-|16 | [What are synthetic events in React?](#what-are-synthetic-events-in-react) |
-|17 | [What is inline conditional expressions?](#what-is-inline-conditional-expressions) |
+|14 | [어떻게 JSX 콜백에서 메서드와 이벤트 핸들러를 바인드하나?](#어떻게-JSX-콜백에서-메서드와-이벤트-핸들러를-바인드하나) |
+|15 | [어떻게 이벤트 핸들러나 콜백에 매개 변수를 전달하나?](#어떻게-이벤트-핸들러나-콜백에-매개-변수를-전달하나) |
+|16 | [React에 SyntheticEvent란 무엇인가?](#React에-SyntheticEvent란-무엇인가) |
+|17 | [인라인 조건 표현식이란?](#인라인-조건-표현식이란) |
 |18 | [What are "key" props and what is the benefit of using them in arrays of elements?](#what-are-key-props-and-what-is-the-benefit-of-using-them-in-arrays-of-elements) |
 |19 | [What is the use of refs?](#what-is-the-use-of-refs) |
 |20 | [How to create refs?](#how-to-create-refs)
@@ -440,10 +443,9 @@
 
     *`React.PureComponent`* 는 `shouldComponentUpdate()` 메서드를 제어하는 것을 제외하면 *`React.Component`*와 다르지 않다. props나 state가 변경되면 *PureComponent* 는 props와 state 에 대해서 얕은 비교를 수행한다. 반면에 *Component* 는 현재의 props와 state에 대해 비교를 하지 않는다. 따라서 `shouldComponentUpdate`가 호출될 때마다 리렌더링된다.
     
-8. ### What is state in React?
+8. ### React에서 state는 무엇인가?
 
-    *State* of a component is an object that holds some information that may change over the lifetime of the component. We should always try to make our state as simple as possible and minimize the number of stateful components. Let's create an user component with message state,
-
+    컴포넌트의 *State*는 컴포넌트의 변경 될 수 있는 정보를 보유하는 객체이다. 가능한 한 간단하게 상태를 만들고 stateful 컴포넌트의 수를 최소화해야 한다. message state를 가진 User 컴포넌트를 만들어보자.
 
     ```jsx harmony
     class User extends React.Component {
@@ -467,33 +469,33 @@
 
     ![state](images/state.jpg)
 
-    State is similar to props, but it is private and fully controlled by the component. i.e, It is not accessible to any component other than the one that owns and sets it.
+    state는 props와 비슷하지만 private 하며 컴포넌트에 의해 제어된다. 즉, 상태는 이를 가지고 있거나 설정할 수 있는 컴포넌트 이외에는 접근할 수 없다.
 
-9. ### What are props in React?
+9. ### React에서 props는 무엇인가?
 
-    *Props* are inputs to components. They are single values or objects containing a set of values that are passed to components on creation using a naming convention similar to HTML-tag attributes. They are data passed down from a parent component to a child component.
+      *Props*는 컴포넌트에 대한 입력이다. Props는 HTML 태그 속성과 같은 작명 규칙을 사용하여 컴포넌트에 전달되는 단일 값 혹은 객체다. props는 부모 컴포넌트에서 자식 컴포넌트로 전달된다.
 
-    The primary purpose of props in React is to provide following component functionality:
+      React에서 props의 주목적은 다음과 같은 컴포넌트의 기능들을 제공하는 것이다.
 
-    1. Pass custom data to your component.
-    2. Trigger state changes.
-    3. Use via `this.props.reactProp` inside component's `render()` method.
+      1. 커스텀 데이터를 컴포넌트로 전달한다.
+      2. state의 변경을 일으킨다.
+      3. 컴포넌트의 `render()` 메서드 내에서 `this.props.reactProp` 를 통해 사용한다.
 
-    For example, let us create an element with `reactProp` property:
+      예를 들어 `reactProp` 요소를 가진 엘리먼트를 만들어보자.
 
     ```jsx harmony
     <Element reactProp={'1'} />
     ```
-
-    This `reactProp` (or whatever you came up with) name then becomes a property attached to React's native props object which originally already exists on all components created using React library.
+    
+    이 `reactProp` (또는 여러분이 만든 것은 무엇이든) React를 사용하여 생성된 모든 컴포넌트에 원래 존재하는 props 객체의 속성이 된다.
 
     ```
     props.reactProp
     ```
 
-10. ### What is the difference between state and props?
+10. ### state와 prop의 차이점은?
 
-    Both *props* and *state* are plain JavaScript objects. While both of them hold information that influences the output of render, they are different in their functionality with respect to component. Props get passed to the component similar to function parameters whereas state is managed within the component similar to variables declared within a function.
+    *props*와 *state*는 모두 순수 자바스크립트 객체다. 둘 다 렌더링 결과에 영향을 주는 정보를 가지고 있지만, 컴포넌트와 관련된 기능 면에서 다르다. props는 함수의 매개변수와 비슷하게 컴포넌트로 전달되는 반면, state는 함수 내에서 선언된 변수와 유사하게 컴포넌트 내에서 관리된다.
 
 11. ### 왜 state를 직접 update하면 안되나?
 
@@ -552,11 +554,11 @@
     }
     ```
 
-14. ### How to bind methods or event handlers in JSX callbacks?
+14. ### 어떻게 JSX 콜백에서 메서드와 이벤트 핸들러를 바인드하나?
 
-    There are 3 possible ways to achieve this:
+    이를 이루기 위한 3가지 방법이 있다.
 
-    1.	**Binding in Constructor:** In JavaScript classes, the methods are not bound by default. The same thing applies for React event handlers defined as class methods. Normally we bind them in constructor.
+    1.	**생성자에서 바인딩:** JavaScript 클래스에서, 메서드는 기본적으로 바인딩 되지 않는다. 클래스 메서드로 정의된 React  이벤트 핸들러에게서도 똑같은 문제가 적용된다. 일반적으로 우리는 생성자 안에서 바인드를 한다.
 
     ```javascript
     class Component extends React.Componenet {
@@ -571,7 +573,7 @@
     }
     ```
 
-    1. **Public class fields syntax:** If you don't like to use bind approach then *public class fields syntax* can be used to correctly bind callbacks.
+    1. **Public 클래스 필드 구문:** 바인드 접근법이 싫다면 콜백을 올바르게 바인드하기 위해 *public 클래스 필드 구문* 을 사용할 수 있다.
 
     ```jsx harmony
     handleClick = () => {
@@ -585,7 +587,7 @@
     </button>
     ```
 
-    1. **Arrow functions in callbacks:** You can use *arrow functions* directly in the callbacks.
+    1. **콜백 안에서 화살표 함수:** 콜백 안에서 직접 *화살표 함수*를 사용할 수 있다.
 
     ```jsx harmony
     <button onClick={(event) => this.handleClick(event)}>
@@ -593,29 +595,29 @@
     </button>
     ```
 
-    **Note:** If the callback is passed as prop to child components, those components might do an extra re-rendering. In those cases, it is preferred to go with `.bind()` or *public class fields syntax* approach considering performance.
+    **Note:** 콜백이 자식 컴포넌트에 prop으로 전달이 되면, 해당 컴포넌트는 추가 리렌더링을 수행할 수 있다. 이 경우에, 성능을 고려하여 `.bind()` 또는 *public 클래스 필드 구문* 접근법을 사용하는 것이 좋다.
 
-15. ### How to pass a parameter to an event handler or callback?
+15. ### 어떻게 이벤트 핸들러나 콜백에 매개 변수를 전달하나?
 
-    You can use an *arrow function* to wrap around an *event handler* and pass parameters:
+    *화살표 함수*를 사용해서 *이벤트 핸들러*를 감싸고 매개변수를 전달할 수 있다.
 
     ```jsx harmony
     <button onClick={() => this.handleClick(id)} />
     ```
 
-    This is an equivalent to calling `.bind`:
+    `.bind`를 호출하는 것과 동일하다:
 
     ```jsx harmony
     <button onClick={this.handleClick.bind(this, id)} />
     ```
 
-16. ### What are synthetic events in React?
+16. ### React에 SyntheticEvent란 무엇인가?
 
-    `SyntheticEvent` is a cross-browser wrapper around the browser's native event. It's API is same as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+    `SyntheticEvent`는 브라우저의 기본 이벤트를 감싼 cross-browser wrapper이다. `stopPropagation()`과 `preventDefault()`를 포함한 API로, 브라우저의 기본 이벤트와 동일하지만, 모든 브라우저에서 동일하게 작동한다는 점이 다르다.
 
-17. ### What is inline conditional expressions?
+17. ### 인라인 조건 표현식이란?
 
-    You can use either *if statements* or *ternary expressions* which are available from JS to conditionally render expressions. Apart from these approaches, you can also embed any expressions in JSX by wrapping them in curly braces and then followed by JS logical operator `&&`.
+    JS에서 조건부로 식을 표현하기 위해서 *if 문* 이나 *삼항 표현식* 을 사용할 수 있다. 이러한 접근법 외에도, JS 논리연산자인 `&&`가 있는 중괄호로 감싼 표현식을 JSX에 포함할 수도 있다.
 
     ```jsx harmony
     <h1>Hello!</h1>
